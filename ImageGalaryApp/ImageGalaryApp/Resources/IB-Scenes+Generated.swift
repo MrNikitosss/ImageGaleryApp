@@ -21,6 +21,13 @@ internal enum StoryboardScene {
     internal static let storyboardName = "Main"
 
     internal static let initialScene = InitialSceneType<ImageGalaryApp.ViewController>(storyboard: Self.self)
+
+    internal static let main = SceneType<ImageGalaryApp.ViewController>(storyboard: Self.self, identifier: "Main")
+  }
+  internal enum MainViewController: StoryboardType {
+    internal static let storyboardName = "MainViewController"
+
+    internal static let mainViewController = SceneType<ImageGalaryApp.MainViewController>(storyboard: Self.self, identifier: "MainViewController")
   }
 }
 // swiftlint:enable explicit_type_interface identifier_name line_length type_body_length type_name
