@@ -8,5 +8,5 @@
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 
-BASE_URL = https://api.unsplash.com/photos?
-ACCESS_KEY = 0-czvbblF5XzaMs4YE2L6NoPanPs7w5mOgae2nC8s3s
+BASE_URL = https:/$()/api.unsplash.com/
+ACCESS_KEY = tprjGue5XdbHt0LczfhQgV66akV26dUMAnD7AawT41Y

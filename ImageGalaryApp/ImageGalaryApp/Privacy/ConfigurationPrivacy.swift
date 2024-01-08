@@ -28,4 +28,12 @@ public enum ConfigurationPrivacy {
 
         return baseUrl
     }()
+
+    static let access_token: String = {
+        guard
+            let accessToken = ConfigurationPrivacy.infoPlist[Keys.accessKey] as? String
+        else { fatalError() }
+
+        return accessToken
+    }()
 }

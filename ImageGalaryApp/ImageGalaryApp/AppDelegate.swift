@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Resolver
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,14 +16,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         self.window = UIWindow(frame: UIScreen.main.bounds)
 
-        let mainVCSTB = StoryboardScene.MainViewController.storyboard
-        let mainVC = mainVCSTB.instantiateViewController(withIdentifier: StoryboardScene.MainViewController.storyboardName) as! MainViewController
-
+        let vc = SceneFactory.produceTabBarController()
+        let navVC = UINavigationController(rootViewController: vc)
+        
         window?.backgroundColor = .white
-        window?.rootViewController = mainVC
+        window?.rootViewController = vc
         window?.makeKeyAndVisible()
+
+        self.startup()
 
         return true
     }
 
+    func startup() {
+        Resolver().registerServices()
+    }
 }

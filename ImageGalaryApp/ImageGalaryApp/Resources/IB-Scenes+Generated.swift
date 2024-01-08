@@ -12,22 +12,32 @@ import UIKit
 
 // swiftlint:disable explicit_type_interface identifier_name line_length type_body_length type_name
 internal enum StoryboardScene {
+  internal enum FavoritesPhotosView: StoryboardType {
+    internal static let storyboardName = "FavoritesPhotosView"
+
+    internal static let favoritesPhotosView = SceneType<ImageGalaryApp.FavoritesPhotosView>(storyboard: Self.self, identifier: "FavoritesPhotosView")
+  }
+  internal enum ImageDescriptionView: StoryboardType {
+    internal static let storyboardName = "ImageDescriptionView"
+
+    internal static let imageDescriptionView = SceneType<ImageGalaryApp.ImageDescriptionView>(storyboard: Self.self, identifier: "ImageDescriptionView")
+  }
+  internal enum ImagesListView: StoryboardType {
+    internal static let storyboardName = "ImagesListView"
+
+    internal static let imagesListView = SceneType<ImageGalaryApp.ImagesListView>(storyboard: Self.self, identifier: "ImagesListView")
+  }
   internal enum LaunchScreen: StoryboardType {
     internal static let storyboardName = "LaunchScreen"
 
     internal static let initialScene = InitialSceneType<UIKit.UIViewController>(storyboard: Self.self)
   }
-  internal enum Main: StoryboardType {
-    internal static let storyboardName = "Main"
+  internal enum TabBarContainerView: StoryboardType {
+    internal static let storyboardName = "TabBarContainerView"
 
-    internal static let initialScene = InitialSceneType<ImageGalaryApp.ViewController>(storyboard: Self.self)
+    internal static let initialScene = InitialSceneType<ImageGalaryApp.TabBarContainerView>(storyboard: Self.self)
 
-    internal static let main = SceneType<ImageGalaryApp.ViewController>(storyboard: Self.self, identifier: "Main")
-  }
-  internal enum MainViewController: StoryboardType {
-    internal static let storyboardName = "MainViewController"
-
-    internal static let mainViewController = SceneType<ImageGalaryApp.MainViewController>(storyboard: Self.self, identifier: "MainViewController")
+    internal static let tabBarContainerView = SceneType<ImageGalaryApp.TabBarContainerView>(storyboard: Self.self, identifier: "TabBarContainerView")
   }
 }
 // swiftlint:enable explicit_type_interface identifier_name line_length type_body_length type_name
