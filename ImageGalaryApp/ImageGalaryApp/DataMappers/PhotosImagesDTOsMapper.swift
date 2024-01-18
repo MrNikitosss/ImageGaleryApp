@@ -7,9 +7,9 @@
 
 import Foundation
 
-final class PhotosImagesDTOsMapper: BaseDataMapper<Any, [PhotoImageDTO]> {
+struct PhotosImagesDTOsMapper: BaseDataMapper {
 
-    override func map(object: Any) throws -> [PhotoImageDTO] {
+    func map(object: Any) throws -> [PhotoImageDTO] {
         guard
             let jsonData = object as? Data,
             let photoImageDTO = try? JSONDecoder().decode(
@@ -26,9 +26,9 @@ final class PhotosImagesDTOsMapper: BaseDataMapper<Any, [PhotoImageDTO]> {
 }
 
 
-final class PhotoImageDTOMapper: BaseDataMapper<Any, PhotoImageDTO> {
+struct PhotoImageDTOMapper: BaseDataMapper {
 
-    override func map(object: Any) throws -> PhotoImageDTO {
+    func map(object: Any) throws -> PhotoImageDTO {
         guard
             let jsonData = object as? Data,
             let photoImageDTO = try? JSONDecoder().decode(

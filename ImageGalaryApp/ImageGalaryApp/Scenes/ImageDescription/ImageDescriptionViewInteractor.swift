@@ -72,7 +72,7 @@ final class ImageDescriptionViewInteractor: ImageDescriptionViewInteractorProtoc
     }
 
     func isFavoriteImage(itemId: String) -> Bool {
-        (self.userDefaultsManager.getObject(for: "favorites", castTo: [FavoriteImageModel].self) ?? []).contains(where: { $0.photoId == itemId })
+        (self.userDefaultsManager.getObject(for: .isFavorite, castTo: [FavoriteImageModel].self) ?? []).contains(where: { $0.photoId == itemId })
     }
 
     func initialUpdate() {

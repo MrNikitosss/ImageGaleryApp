@@ -7,9 +7,9 @@
 
 import Foundation
 
-final class PhotosImageURLsDTOMapper: BaseDataMapper<PhotosImageURLsDTO, PhotosImageURLs> {
+struct PhotosImageURLsDTOMapper: BaseDataMapper {
 
-    override func map(object: PhotosImageURLsDTO) throws -> PhotosImageURLs {
+    func map(object: PhotosImageURLsDTO) throws -> PhotosImageURLs {
         guard
             let full = object.full,
             let raw = object.raw,

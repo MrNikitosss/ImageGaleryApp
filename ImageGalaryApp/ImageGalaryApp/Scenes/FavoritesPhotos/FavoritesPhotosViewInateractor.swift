@@ -29,7 +29,7 @@ final class FavoritesPhotosViewInateractor: FavoritesPhotosViewInateractorProtoc
 
     func loadFavoritesImages() {
         guard 
-            var images = self.userDefaultsManager.getObject(for: "favorites", castTo: [FavoriteImageModel].self)
+            var images = self.userDefaultsManager.getObject(for: .isFavorite, castTo: [FavoriteImageModel].self)
         else { return }
 
         images.removeAll(where: { $0.photoId == nil || $0.thumbUrl == nil })
@@ -62,8 +62,8 @@ final class FavoritesPhotosViewInateractor: FavoritesPhotosViewInateractorProtoc
 
     func removeFromFavoritesImage(at index: Int) {
         let image = favoritesPhotos[index]
-        var favoritesImageURLs = self.userDefaultsManager.getObject(for: "favorites", castTo: [FavoriteImageModel].self) ?? []
+        var favoritesImageURLs = self.userDefaultsManager.getObject(for: .isFavorite, castTo: [FavoriteImageModel].self) ?? []
         favoritesImageURLs.removeAll(where: { $0.photoId == image.photoId })
-        self.userDefaultsManager.setObject(favoritesImageURLs, for: "favorites")
+        self.userDefaultsManager.setObject(favoritesImageURLs, for: .isFavorite)
     }
 }

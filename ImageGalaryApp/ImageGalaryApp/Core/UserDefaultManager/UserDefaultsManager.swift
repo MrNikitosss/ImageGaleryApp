@@ -1,32 +1,35 @@
 import Foundation
 
-enum UserDefaultsKeys: String {
-    case isFavorite
+struct UserDefaultsKeys: RawRepresentable {
+    var rawValue: String
+
+    static let isFavorite = UserDefaultsKeys(rawValue: "")
 }
 
 protocol UserDefaultsManagerProtocol {
-    func setObject<Object>(_ object: Object, for key: String) where Object: Encodable
-    func getObject<Object>(for key: String, castTo type: Object.Type) -> Object? where Object: Decodable
+    func setObject<Object>(_ object: Object, for key: UserDefaultsKeys) where Object: Encodable
+    func getObject<Object>(for key: UserDefaultsKeys, castTo type: Object.Type) -> Object? where Object: Decodable
 }
 
-final class UserDefaultsManager: NSObject {
+final class UserDefaultsManager {
     private var storage: UserDefaults
 
     init(storage: UserDefaults) {
         self.storage = storage
+
     }
 }
 
 // MARK: ObjectSavable
 extension UserDefaultsManager: UserDefaultsManagerProtocol {
-    func setObject<Object>(_ object: Object, for key: String) where Object: Encodable {
+    func setObject<Object>(_ object: Object, for key: UserDefaultsKeys) where Object: Encodable {
         let data = try? JSONEncoder().encode(object)
 
-        storage.set(data, forKey: key)
+        storage.set(data, forKey: key.rawValue)
     }
 
-    func getObject<Object>(for key: String, castTo type: Object.Type) -> Object? where Object: Decodable {
-        guard let data = storage.data(forKey: key) else {
+    func getObject<Object>(for key: UserDefaultsKeys, castTo type: Object.Type) -> Object? where Object: Decodable {
+        guard let data = storage.data(forKey: key.rawValue) else {
             return nil
         }
 

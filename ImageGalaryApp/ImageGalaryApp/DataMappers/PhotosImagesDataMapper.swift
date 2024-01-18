@@ -7,9 +7,9 @@
 
 import Foundation
 
-final class PhotosImagesDataMapper: BaseDataMapper<[PhotoImageDTO], [PhotoImageData]> {
+struct PhotosImagesDataMapper: BaseDataMapper {
 
-    override func map(object: [PhotoImageDTO]) throws -> [PhotoImageData] {
+    func map(object: [PhotoImageDTO]) throws -> [PhotoImageData] {
         let photosURLsMapper = PhotosImageURLsDTOMapper()
 
         var arr: [PhotoImageData] = []
@@ -53,9 +53,9 @@ final class PhotosImagesDataMapper: BaseDataMapper<[PhotoImageDTO], [PhotoImageD
     }
 }
 
-final class PhotoImageDataMapper: BaseDataMapper<PhotoImageDTO, PhotoImageData> {
+struct PhotoImageDataMapper: BaseDataMapper {
 
-    override func map(object: PhotoImageDTO) throws -> PhotoImageData {
+    func map(object: PhotoImageDTO) throws -> PhotoImageData {
         let photosURLsMapper = PhotosImageURLsDTOMapper()
 
             guard

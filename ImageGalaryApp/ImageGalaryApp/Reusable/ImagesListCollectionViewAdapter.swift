@@ -61,7 +61,8 @@ extension ImagesListCollectionViewAdapter: UICollectionViewDelegate, UICollectio
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
         let itemSize = (collectionView.frame.width - (collectionView.contentInset.left + collectionView.contentInset.right + 10)) / 2
-
+        let cell = collectionView.cellForItem(at: indexPath)?.bounds
+        
         return CGSize(width: itemSize, height: itemSize)
     }
 

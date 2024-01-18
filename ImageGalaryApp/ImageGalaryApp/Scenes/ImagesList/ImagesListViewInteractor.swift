@@ -52,7 +52,7 @@ final class ImagesListViewInteractor: ImagesListViewInteractorProtocol {
 
     func addToFavoriteImage(at index: Int) {
         let image = self.repository.photoAt(index: index)
-        var favoritesImageURLs = self.userDefaultsManager.getObject(for: "favorites", castTo: [FavoriteImageModel].self) ?? []
+        var favoritesImageURLs = self.userDefaultsManager.getObject(for: .isFavorite, castTo: [FavoriteImageModel].self) ?? []
 
         if favoritesImageURLs.contains(where: { image.id == $0.photoId ?? "" }) { return }
 
@@ -69,15 +69,15 @@ final class ImagesListViewInteractor: ImagesListViewInteractorProtocol {
 
         favoritesImageURLs.removeAll(where: { $0.photoId == nil || $0.thumbUrl == nil })
 
-        self.userDefaultsManager.setObject(favoritesImageURLs, for: "favorites")
+        self.userDefaultsManager.setObject(favoritesImageURLs, for: .isFavorite)
     }
 
     func removeFromFavoritesImage(at index: Int) {
         let image = self.repository.photoAt(index: index)
-        var favoritesImageURLs = self.userDefaultsManager.getObject(for: "favorites", castTo: [FavoriteImageModel].self) ?? []
+        var favoritesImageURLs = self.userDefaultsManager.getObject(for: .isFavorite, castTo: [FavoriteImageModel].self) ?? []
         favoritesImageURLs.removeAll(where: { ($0.photoId ?? "") == image.id })
         let cleanData = Array(Set(favoritesImageURLs))
-        self.userDefaultsManager.setObject(cleanData, for: "favorites")
+        self.userDefaultsManager.setObject(cleanData, for: .isFavorite)
     }
 
     func requestData() {
@@ -89,7 +89,7 @@ final class ImagesListViewInteractor: ImagesListViewInteractorProtocol {
             let uiData = self.repository.photoImageData(for: self.currentPage)!
             self.presenter.preparePhotsUIData(
                 photos: uiData,
-                favoritesPhotos: self.userDefaultsManager.getObject(for: "favorites", castTo: [FavoriteImageModel].self) ?? []
+                favoritesPhotos: self.userDefaultsManager.getObject(for: .isFavorite, castTo: [FavoriteImageModel].self) ?? []
             )
             return
         }
@@ -143,7 +143,7 @@ private extension ImagesListViewInteractor {
                 let uiData = self.repository.photoImageData(for: self.currentPage)!
                 self.presenter.preparePhotsUIData(
                     photos: uiData,
-                    favoritesPhotos: self.userDefaultsManager.getObject(for: "favorites", castTo: [FavoriteImageModel].self) ?? []
+                    favoritesPhotos: self.userDefaultsManager.getObject(for: .isFavorite, castTo: [FavoriteImageModel].self) ?? []
                 )
 
             } onFailure: { [weak self] networkError in
