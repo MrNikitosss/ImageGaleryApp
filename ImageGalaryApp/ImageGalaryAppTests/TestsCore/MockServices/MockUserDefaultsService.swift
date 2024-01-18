@@ -12,12 +12,12 @@ final class MockUserDefaultsService: UserDefaultsManagerProtocol {
 
     private var localStorage: [String : Any] = [:]
 
-    func setObject<Object>(_ object: Object, for key: String) where Object : Encodable { 
-        self.localStorage[key] = object
+    func setObject<Object>(_ object: Object, for key: UserDefaultsKeys) where Object : Encodable {
+        self.localStorage[key.rawValue] = object
     }
 
-    func getObject<Object>(for key: String, castTo type: Object.Type) -> Object? where Object : Decodable {
-        return self.localStorage[key] as? Object
+    func getObject<Object>(for key: UserDefaultsKeys, castTo type: Object.Type) -> Object? where Object : Decodable {
+        return self.localStorage[key.rawValue] as? Object
     }
 
 }

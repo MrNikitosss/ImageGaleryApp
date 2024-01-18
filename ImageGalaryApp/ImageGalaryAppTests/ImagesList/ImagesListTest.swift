@@ -111,7 +111,7 @@ final class ImagesListTest: XCTestCase {
 
 
         //then
-        XCTAssertNotNil(self.userDefaultsManager.getObject(for: "favorites", castTo: [FavoriteImageModel].self))
+        XCTAssertNotNil(self.userDefaultsManager.getObject(for: .isFavorite, castTo: [FavoriteImageModel].self))
 
         //when
         let showDescriptionSceneExpecxtation = XCTestExpectation(description: "Tap on show details photo")
@@ -142,7 +142,7 @@ final class ImagesListTest: XCTestCase {
         self.wait(for: [expectation], timeout: 3)
 
         //then
-        let objects = self.userDefaultsManager.getObject(for: "favorites", castTo: [FavoriteImageModel].self)
+        let objects = self.userDefaultsManager.getObject(for: .isFavorite, castTo: [FavoriteImageModel].self)
         XCTAssertNotNil(objects, "Oops...")
         XCTAssertTrue((objects?.count ?? 0) > 0, "Favorites images count is zero")
         XCTAssertNil(objects?.filter({ ($0.photoId ?? "") == "KfDbyu55qyY" }).first)
